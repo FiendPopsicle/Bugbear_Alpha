@@ -4,6 +4,24 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/_Boot/_Boot.unity
+    guid: b6b3acbf3bad1034f9f24a5ee582323b
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/Gameplay.unity
+    guid: 5e9001dc50d1fe44cb49c32eeb194eef
+  - enabled: 1
+    path: Assets/Scenes/Menus/MainMenu.unity
+    guid: 9214af3e4b9cbe54f91c3e541a5cf281
+  - enabled: 1
+    path: Assets/Scenes/Transitions/Curtain.unity
+    guid: a0dfa58011cc05445b9e0668add81321
+  - enabled: 1
+    path: Assets/Scenes/UI/UI.unity
+    guid: e33fc366d9ab0c4429bf6570c5c6e41b
+  - enabled: 1
+    path: Assets/Scenes/Locations/Sandbox.unity
+    guid: e63d406ed7201894bbe5f55652ded857
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4a9c7a4badfedad418b6ce90d793f9a0, type: 2}

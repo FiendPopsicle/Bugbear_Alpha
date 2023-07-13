@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757ed356da359f445a7e3542209e7184, type: 3}
+  m_Name: CurtainSO
+  m_EditorClassIdentifier: 
+  _guid: 5672967169c87da45948e1a571ce455e
+  sceneReference:
+    sceneAsset: {fileID: 102900000, guid: a0dfa58011cc05445b9e0668add81321, type: 3}
+    scenePath: Assets/Scenes/Transitions/Curtain.unity
+  shortDescription: 
+  type: 0

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 757ed356da359f445a7e3542209e7184, type: 3}
+  m_Name: UISO
+  m_EditorClassIdentifier: 
+  _guid: ba8d976dd159a27448c984321e3a4f07
+  sceneReference:
+    sceneAsset: {fileID: 102900000, guid: e33fc366d9ab0c4429bf6570c5c6e41b, type: 3}
+    scenePath: Assets/Scenes/UI/UI.unity
+  shortDescription: 
+  type: 5

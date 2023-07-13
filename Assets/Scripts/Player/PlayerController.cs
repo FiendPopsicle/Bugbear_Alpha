@@ -1,41 +1,41 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Bugbear.CharacterMovement;
 
-public class PlayerController : MonoBehaviour
+namespace Bugbear.Player
 {
-    private InputMap _playerInput;
-    private Movement _movement;
-
-    private Camera mainCamera;
-
-    private void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        _playerInput = new InputMap();
-        _movement = GetComponent<Movement>();
+        private InputMap _playerInput;
+        private Movement _movement;
 
-        _playerInput.PlayerControls.Move.started += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
-        _playerInput.PlayerControls.Move.performed += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
-        _playerInput.PlayerControls.Move.canceled += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
-        _playerInput.PlayerControls.Jump.started += ctx => _movement.OnJump(ctx.ReadValueAsButton());
-        _playerInput.PlayerControls.Jump.canceled += ctx => _movement.OnJump(ctx.ReadValueAsButton());
+        private Camera mainCamera;
 
-    }
+        private void Awake()
+        {
+            _playerInput = new InputMap();
+            _movement = GetComponent<Movement>();
 
-    private void Start()
-    {
-        mainCamera = Camera.main;
-    }
+            _playerInput.PlayerControls.Move.started += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
+            _playerInput.PlayerControls.Move.performed += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
+            _playerInput.PlayerControls.Move.canceled += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
+            _playerInput.PlayerControls.Jump.started += ctx => _movement.OnJump(ctx.ReadValueAsButton());
+            _playerInput.PlayerControls.Jump.canceled += ctx => _movement.OnJump(ctx.ReadValueAsButton());
 
-    private void OnEnable()
-    {
-        _playerInput.PlayerControls.Enable();
-    }
+        }
 
-    private void OnDisable()
-    {
-        _playerInput.PlayerControls.Disable();
+        private void Start()
+        {
+            mainCamera = Camera.main;
+        }
+
+        private void OnEnable()
+        {
+            _playerInput.PlayerControls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInput.PlayerControls.Disable();
+        }
     }
 }
