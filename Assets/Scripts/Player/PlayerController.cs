@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private InputMap _playerInput;
-    public Movement _movement;
+    private Movement _movement;
 
     private Camera mainCamera;
 
     private void Awake()
     {
         _playerInput = new InputMap();
+        _movement = GetComponent<Movement>();
 
         _playerInput.PlayerControls.Move.started += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());
         _playerInput.PlayerControls.Move.performed += ctx => _movement.SetMovement(ctx.ReadValue<Vector2>());

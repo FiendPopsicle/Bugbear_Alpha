@@ -6,12 +6,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [Header("References")]
-    public CharacterController _characterController;
-    //public Animator _animator;
+    private CharacterController _characterController;
+    private Animator _animator;
 
     [Header("Constants")]
     public float _moveSpeed = 2f;
-    public float _gravity = 9.8f;
+    public float _gravity = -9.8f;
+    private float _groundedGravity = -0.05f;
     private float _jumpForce;
     private float _movementGCD;
     private float _maxJumpHeight = 1.0f;
@@ -25,19 +26,26 @@ public class Movement : MonoBehaviour
     //Player Input Values
     private Vector3 _currentMovement;
     private bool isMovementPressed;
-    private bool isJumping;
+    private bool isJumping = false;
     private bool isDashing;
-    private bool isJumpPressed;
+    private bool isJumpPressed = false;
 
     //Animations TODO: ADD MORE HASHES
     private int isRunningHash;
     private int isJumpingHash;
+    private bool isJumpAnimating = false;
 
 
 
     private void Start()
     {
+        InitializeMovement();
         InitializeJumpVariables();
+    }
+
+    private void InitializeMovement()
+    {
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void InitializeJumpVariables()
@@ -56,18 +64,20 @@ public class Movement : MonoBehaviour
         isMovementPressed = input.x != 0 || input.y != 0;
     }
 
-    public void OnJump(bool whatJump)
+    public void OnJump(bool isJumping)
     {
-        isJumpPressed = whatJump;
+        isJumpPressed = isJumping;
+        Debug.Log(isJumpPressed);
     }
 
     private void Update()
     {
-        HandleGravity();
         HandleMovement();
-        HandleJump();
 
         MovementGCD();
+
+        HandleGravity();
+        HandleJump();
     }
 
     private void HandleAnimation()
@@ -88,9 +98,9 @@ public class Movement : MonoBehaviour
 
         if(_characterController.isGrounded)
         {
-            if(isJumping)
+            if(isJumpAnimating)
             {
-                //Jumping Animation
+                isJumpAnimating = false;
             }
             _currentMovement.y = _gravity;
         }
@@ -117,12 +127,13 @@ public class Movement : MonoBehaviour
 
     private void HandleJump()
     {
-        if(!isJumping && _characterController.isGrounded && _movementGCD >= _jumpCooldown)
+        if(!isJumping && _characterController.isGrounded && isJumpPressed)
         {
+            isJumpAnimating= true;
             isJumping = true;
             _currentMovement.y = _jumpForce * 0.7f;
             _movementGCD = 0f;
-        } else if (isJumping && _characterController.isGrounded)
+        } else if (!isJumpPressed && isJumping && _characterController.isGrounded)
         {
             isJumping = false;
         }
