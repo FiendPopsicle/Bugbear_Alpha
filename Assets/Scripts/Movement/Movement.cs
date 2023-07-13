@@ -23,7 +23,6 @@ public class Movement : MonoBehaviour
     private float _deceleration = 2.0f;
 
     //Player Input Values
-    private Vector2 _currentMovementInput;
     private Vector3 _currentMovement;
     private bool isMovementPressed;
     private bool isJumping;
@@ -33,6 +32,8 @@ public class Movement : MonoBehaviour
     //Animations TODO: ADD MORE HASHES
     private int isRunningHash;
     private int isJumpingHash;
+
+
 
     private void Start()
     {
@@ -57,7 +58,7 @@ public class Movement : MonoBehaviour
 
     public void OnJump(bool whatJump)
     {
-        isJumping = whatJump;
+        isJumpPressed = whatJump;
     }
 
     private void Update()
@@ -69,6 +70,17 @@ public class Movement : MonoBehaviour
         MovementGCD();
     }
 
+    private void HandleAnimation()
+    {
+        if(isMovementPressed)
+        {
+
+        } else if (!isMovementPressed)
+        {
+            
+        }
+    }
+
     private void HandleGravity()
     {
         bool isFalling = _currentMovement.y <= 0.0f || !isJumpPressed;
@@ -78,7 +90,7 @@ public class Movement : MonoBehaviour
         {
             if(isJumping)
             {
-
+                //Jumping Animation
             }
             _currentMovement.y = _gravity;
         }

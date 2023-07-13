@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-
     }
 
     private void OnEnable()
