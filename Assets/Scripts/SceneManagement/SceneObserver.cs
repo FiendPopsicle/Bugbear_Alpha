@@ -1,3 +1,4 @@
+using Bugbear.AudioSystem;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -31,6 +32,7 @@ namespace Bugbear.Managers
         public event Action onForce;
         public event Action<string> onRequestCurtain;
         public event Action broadcastSceneLoaded;
+        public event Action onRequestLevelAlbum;
         public void SceneRequest(GameSceneSO scene, bool isMenu) => onSceneRequest?.Invoke(scene, isMenu);
         public void ColdBootRequest() => onColdStartUp?.Invoke();
         public void RequestMainMenu() => onStartUp?.Invoke();
@@ -178,6 +180,7 @@ namespace Bugbear.Managers
                 _locationLoaded = true;
                 _previousScene = locationToLoad;
                 _isLoading = false;
+                onRequestLevelAlbum?.Invoke();
             }
         }
 

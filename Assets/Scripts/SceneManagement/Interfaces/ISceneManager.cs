@@ -1,4 +1,6 @@
+using Bugbear.AudioSystem;
 using System;
+using UnityEngine;
 
 public interface ISceneManager
 {
@@ -11,4 +13,5 @@ public interface ISceneManager
 
     public event Action<GameSceneSO, bool> onSceneRequest;
     public event Action broadcastSceneLoaded;
+    public event Action onRequestLevelAlbum;
 }

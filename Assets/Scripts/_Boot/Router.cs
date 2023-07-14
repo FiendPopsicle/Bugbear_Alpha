@@ -12,6 +12,9 @@ namespace Bugbear.Managers
 
             GlobalPointer._saveManager = GetComponent<ISaveManager>();
             yield return ((IGlobalRouter)GlobalPointer._saveManager).InitializeComponent();
+
+            GlobalPointer._audioManager = GetComponent<AudioManager>();
+            yield return ((IGlobalRouter)(GlobalPointer._audioManager)).InitializeComponent();
         }
 
         public void OnStartUp()

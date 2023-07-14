@@ -6,5 +6,6 @@ namespace Bugbear.Managers
     {
         public static ISceneManager _sceneManager;
         public static ISaveManager _saveManager;
+        public static IAudioManager _audioManager;
     }
 }
