@@ -13,7 +13,15 @@ namespace Bugbear.Managers
 
         public void PlayTrack(int id)
         {
+            if(_currentAudioSource == null)
+            {
+                Debug.LogError("Audio Source has not been laoded"); return;
+            }
 
+            if(_currentAlbum == null) { Debug.LogError("Album has not been selected"); return; }
+
+            _currentAudioSource.clip = GetTrack(id);
+            _currentAudioSource.Play();
         }
 
         public void StopTrack()
@@ -33,6 +41,17 @@ namespace Bugbear.Managers
 
             Debug.Log("Audio Manager Listening...");
 
+            return null;
+        }
+
+        private AudioClip GetTrack(int id)
+        {
+            foreach (var track in _currentAlbum.tracks)
+            {
+                if(id == track.id) return track.audioReference;
+            }
+
+            Debug.Log("Track not found");
             return null;
         }
     }

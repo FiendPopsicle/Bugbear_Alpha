@@ -23,7 +23,11 @@ namespace Bugbear.AudioSystem
             GlobalPointer._sceneManager.onRequestLevelAlbum -= ReceivedRequest;
         }
 
-        void ReceivedRequest()
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P)) GlobalPointer._audioManager.PlayTrack(2);
+        }
+        private void ReceivedRequest()
         {
             GlobalPointer._audioManager.InitalizeAudioReceiver(_audioSource, _levelAlbum);
         }
