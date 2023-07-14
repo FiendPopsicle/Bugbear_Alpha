@@ -30,6 +30,7 @@ namespace Bugbear.Managers
         public event Action onStartUp;
         public event Action onForce;
         public event Action<string> onRequestCurtain;
+        public event Action broadcastSceneLoaded;
         public void SceneRequest(GameSceneSO scene, bool isMenu) => onSceneRequest?.Invoke(scene, isMenu);
         public void ColdBootRequest() => onColdStartUp?.Invoke();
         public void RequestMainMenu() => onStartUp?.Invoke();
@@ -164,7 +165,6 @@ namespace Bugbear.Managers
                 {
                     Scene newScene = SceneManager.GetSceneByPath(locationToLoad.GetScenePath());
                     SceneManager.SetActiveScene(newScene);
-                    _locationLoaded = true;
                 }
 
                 //Call Curtain
@@ -175,6 +175,7 @@ namespace Bugbear.Managers
                 AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(_curtain.sceneReference);
                 yield return new WaitUntil(() => asyncUnload.isDone);
 
+                _locationLoaded = true;
                 _previousScene = locationToLoad;
                 _isLoading = false;
             }
@@ -213,11 +214,6 @@ namespace Bugbear.Managers
                     AsyncOperation asyncMenu = SceneManager.LoadSceneAsync(menuscene.sceneReference, LoadSceneMode.Additive);
                     yield return new WaitUntil(() => asyncMenu.isDone);
 
-                    if (asyncMenu.isDone)
-                    {
-                        _menuLoaded = true;
-                    }
-
                     //Call Curtain
                     RequestCurtain("fadeOut");
                     yield return new WaitUntil(() => Transition.current.isDone);
@@ -230,8 +226,10 @@ namespace Bugbear.Managers
                     }
                 }
                 Debug.Log("Menu Opertaion Done...");
+                _menuLoaded = true;
                 _isLoading = false;
                 _previousScene = menuscene;
+                broadcastSceneLoaded?.Invoke();
             }
             else
             {

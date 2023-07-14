@@ -16,20 +16,17 @@ namespace Bugbear.Managers
         }
         private void OnEnable()
         {
-            
+            GlobalPointer._sceneManager.broadcastSceneLoaded += StartNewGameClient;
+        }
+        private void OnDisable()
+        {
+            GlobalPointer._sceneManager.broadcastSceneLoaded -= StartNewGameClient;
         }
         private void OnDestroy()
         {
             
         }
 
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                StartNewGameClient();
-            }
-        }
         public void StartNewGameClient()
         {
             GlobalPointer._sceneManager.SceneRequest(_newGame, false);

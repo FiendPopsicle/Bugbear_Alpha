@@ -10,4 +10,5 @@ public interface ISceneManager
     public event Action<string> onRequestCurtain;
 
     public event Action<GameSceneSO, bool> onSceneRequest;
+    public event Action broadcastSceneLoaded;
 }
