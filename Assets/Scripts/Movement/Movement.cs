@@ -7,6 +7,7 @@ namespace Bugbear.CharacterMovement
         [Header("References")]
         private CharacterController _characterController;
         private Animator _animator;
+        private SpriteRenderer _spriteRenderer;
 
         [Header("Constants")]
         public float _moveSpeed = 2f;
@@ -17,7 +18,6 @@ namespace Bugbear.CharacterMovement
         private float _maxJumpHeight = 1.0f;
         private float _maxJumpTime = 0.75f;
         private float _jumpCooldown = 1f;
-        private float _velocityZ = 0.0f;
         private float _velocityX = 0.0f;
         private float _acceleration = 2.0f;
         private float _deceleration = 2.0f;
@@ -30,22 +30,28 @@ namespace Bugbear.CharacterMovement
         private bool isJumpPressed = false;
 
         //Animations TODO: ADD MORE HASHES
-        private int isRunningHash;
-        private int isJumpingHash;
+        private int isMovingHash = Animator.StringToHash("isMoving");
+        private int isJumpingHash = Animator.StringToHash("isJumping");
+        private int isFallingHash = Animator.StringToHash("isFalling");
         private bool isJumpAnimating = false;
-
-
+        private float lastDirection;
 
         private void Start()
         {
             InitializeMovement();
+            InitializeAnimation();
             InitializeJumpVariables();
         }
 
         private void InitializeMovement()
         {
             _characterController = GetComponent<CharacterController>();
+        }
+
+        private void InitializeAnimation()
+        {
             _animator = GetComponent<Animator>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void InitializeJumpVariables()
@@ -60,8 +66,8 @@ namespace Bugbear.CharacterMovement
         public void SetMovement(Vector2 input)
         {
             _currentMovement.x = input.x;
-            _currentMovement.z = input.y;
-            isMovementPressed = input.x != 0 || input.y != 0;
+            _currentMovement.z = 0;
+            isMovementPressed = input.x != 0;
         }
 
         public void OnJump(bool isJumping)
@@ -80,13 +86,15 @@ namespace Bugbear.CharacterMovement
 
         private void HandleAnimation()
         {
+            HandleLookDirection();
+
             if (isMovementPressed)
             {
-                _animator.SetBool("isMoving", true);
+                _animator.SetBool(isMovingHash, true);
             }
             else if (!isMovementPressed)
             {
-                _animator.SetBool("isMoving", false);
+                _animator.SetBool(isMovingHash, false);
             }
         }
 
@@ -97,14 +105,17 @@ namespace Bugbear.CharacterMovement
 
             if (_characterController.isGrounded)
             {
+                _animator.SetBool(isFallingHash, false);
                 if (isJumpAnimating)
                 {
+                    _animator.SetBool("isJumping", false);
                     isJumpAnimating = false;
                 }
                 _currentMovement.y = _gravity;
             }
             else if (isFalling)
             {
+                _animator.SetBool("isFalling", true);
                 float previousYvelocity = _currentMovement.y;
                 float newYvelocity = _currentMovement.y + (_gravity * falllMultiplier * Time.deltaTime);
                 float nextYvelocity = (previousYvelocity + newYvelocity) * 0.5f;
@@ -129,6 +140,7 @@ namespace Bugbear.CharacterMovement
         {
             if (!isJumping && _characterController.isGrounded && isJumpPressed)
             {
+                _animator.SetBool("isJumping", true);
                 isJumpAnimating = true;
                 isJumping = true;
                 _currentMovement.y = _jumpForce * 0.7f;
@@ -137,7 +149,29 @@ namespace Bugbear.CharacterMovement
             else if (!isJumpPressed && isJumping && _characterController.isGrounded)
             {
                 isJumping = false;
+                _animator.SetBool("isFalling", false);
             }
+        }
+        private void HandleLookDirection()
+        {
+            if (_currentMovement.x > 0)
+            {
+                lastDirection = Mathf.Sign(_currentMovement.x);
+                FlipSprite();
+            }
+            else if (_currentMovement.x < 0)
+            {
+                lastDirection = Mathf.Sign(_currentMovement.x);
+                FlipSprite(lastDirection);
+            }
+            else
+            {
+                FlipSprite(lastDirection);
+            }
+        }
+        private void FlipSprite(float direction = 1f)
+        {
+            _spriteRenderer.flipX = direction < 0;
         }
     }
 }
