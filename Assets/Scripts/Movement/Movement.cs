@@ -45,6 +45,7 @@ namespace Bugbear.CharacterMovement
         private void InitializeMovement()
         {
             _characterController = GetComponent<CharacterController>();
+            _animator = GetComponent<Animator>();
         }
 
         private void InitializeJumpVariables()
@@ -71,6 +72,7 @@ namespace Bugbear.CharacterMovement
         private void Update()
         {
             HandleMovement();
+            HandleAnimation();
 
             HandleGravity();
             HandleJump();
@@ -80,11 +82,11 @@ namespace Bugbear.CharacterMovement
         {
             if (isMovementPressed)
             {
-
+                _animator.SetBool("isMoving", true);
             }
             else if (!isMovementPressed)
             {
-
+                _animator.SetBool("isMoving", false);
             }
         }
 
@@ -107,6 +109,7 @@ namespace Bugbear.CharacterMovement
                 float newYvelocity = _currentMovement.y + (_gravity * falllMultiplier * Time.deltaTime);
                 float nextYvelocity = (previousYvelocity + newYvelocity) * 0.5f;
                 _currentMovement.y = nextYvelocity;
+
             }
             else
             {
