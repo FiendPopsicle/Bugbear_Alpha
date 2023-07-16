@@ -1,5 +1,5 @@
-using UnityEngine;
 using Bugbear.CharacterMovement;
+using UnityEngine;
 
 namespace Bugbear.Player
 {

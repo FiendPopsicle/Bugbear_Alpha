@@ -139,7 +139,7 @@ namespace Bugbear.Managers
             if (!(checkGameplay.isLoaded || checkGameplay.IsValid())) yield return LoadGameplayScene(_gameplayScene);
 
             //Attempt to Load UI
-            if(!(checkUi.isLoaded || checkUi.IsValid())) yield return LoadUiScene(_uiScene);
+            if (!(checkUi.isLoaded || checkUi.IsValid())) yield return LoadUiScene(_uiScene);
 
             //Attempt to Load Location
             yield return LoadLocationScene(locationToLoad);
@@ -161,7 +161,7 @@ namespace Bugbear.Managers
 
             if (menuscene == null) menuscene = _menuScene;
 
-            if(!IsValidMenuScene(menuscene)) yield break;
+            if (!IsValidMenuScene(menuscene)) yield break;
 
             if (_isLoading) yield break;
 
@@ -235,7 +235,7 @@ namespace Bugbear.Managers
 
         private bool IsValidMenuScene(GameSceneSO menuscene)
         {
-            if(menuscene.type != GameSceneSO.GameSceneType.Menu)
+            if (menuscene.type != GameSceneSO.GameSceneType.Menu)
             {
                 Debug.Log("Scene being requested is not a Menu Scene");
                 return false;
@@ -260,7 +260,7 @@ namespace Bugbear.Managers
         }
         private IEnumerator UnloadPreviousScene()
         {
-            if(_previousScene != null)
+            if (_previousScene != null)
             {
                 Debug.Log("Unloaded: " + _previousScene.name);
                 AsyncOperation asyncPrevious = SceneManager.UnloadSceneAsync(_previousScene.sceneReference);
@@ -313,7 +313,7 @@ namespace Bugbear.Managers
         {
             isSceneLoaded = true;
             _isLoading = false;
-            broadcastSceneLoaded?.Invoke(); 
+            broadcastSceneLoaded?.Invoke();
         }
     }
 }

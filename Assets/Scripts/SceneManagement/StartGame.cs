@@ -24,7 +24,7 @@ namespace Bugbear.Managers
         }
         private void OnDestroy()
         {
-            
+
         }
 
         public void StartNewGameClient()

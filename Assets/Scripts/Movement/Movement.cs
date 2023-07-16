@@ -66,7 +66,6 @@ namespace Bugbear.CharacterMovement
         public void OnJump(bool isJumping)
         {
             isJumpPressed = isJumping;
-            Debug.Log(isJumpPressed);
         }
 
         private void Update()

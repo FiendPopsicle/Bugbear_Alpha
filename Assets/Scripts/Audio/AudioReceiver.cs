@@ -1,5 +1,4 @@
 ﻿using Bugbear.Managers;
-using System;
 using UnityEngine;
 
 namespace Bugbear.AudioSystem
@@ -21,11 +20,6 @@ namespace Bugbear.AudioSystem
         private void OnDisable()
         {
             GlobalPointer._sceneManager.onRequestLevelAlbum -= ReceivedRequest;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.P)) GlobalPointer._audioManager.PlayTrack(2);
         }
         private void ReceivedRequest()
         {

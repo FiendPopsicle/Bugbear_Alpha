@@ -1,5 +1,4 @@
 ﻿using Bugbear.Managers;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,11 +33,11 @@ public class Transition : MonoBehaviour
 
     private IEnumerator Fade(string request)
     {
-        if(request == "fadeOut")
+        if (request == "fadeOut")
         {
             isDone = false;
             // Loop over 1 second backwards
-            for(float i = 1; i >= 0; i -= Time.deltaTime)
+            for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 // set color with i as alpha
                 _curtain.color = new Color(0, 0, 0, i);
@@ -48,16 +47,16 @@ public class Transition : MonoBehaviour
         }
 
         // fade from transparent to opaque
-        if(request == "fadeIn")
+        if (request == "fadeIn")
         {
             isDone = false;
             // loop over 1 second
-            for(float i = 0; i <= 1; i += Time.deltaTime)
+            for (float i = 0; i <= 1; i += Time.deltaTime)
             {
                 _curtain.color = new Color(0, 0, 0, i);
                 yield return null;
             }
-            isDone= true;
+            isDone = true;
         }
     }
 }

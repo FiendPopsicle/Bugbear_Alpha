@@ -10,7 +10,7 @@ public class SaveSystem : ScriptableObject
 
     public bool LoadSaveDataFromDisk()
     {
-        if(FileManager.LoadFromFile(saveFileName, out var json))
+        if (FileManager.LoadFromFile(saveFileName, out var json))
         {
             saveData.LoadFromJson(json);
             return true;
@@ -19,7 +19,7 @@ public class SaveSystem : ScriptableObject
     }
     public void SaveDataToDisk()
     {
-        if(FileManager.MoveFile(saveFileName, backupSaveFileName))
+        if (FileManager.MoveFile(saveFileName, backupSaveFileName))
         {
             try
             {

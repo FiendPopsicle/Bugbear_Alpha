@@ -1,5 +1,4 @@
 ﻿using Bugbear.AudioSystem;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,12 +12,12 @@ namespace Bugbear.Managers
 
         public void PlayTrack(int id)
         {
-            if(_currentAudioSource == null)
+            if (_currentAudioSource == null)
             {
                 Debug.LogError("Audio Source has not been laoded"); return;
             }
 
-            if(_currentAlbum == null) { Debug.LogError("Album has not been selected"); return; }
+            if (_currentAlbum == null) { Debug.LogError("Album has not been selected"); return; }
 
             _currentAudioSource.clip = GetTrack(id);
             _currentAudioSource.Play();
@@ -48,7 +47,7 @@ namespace Bugbear.Managers
         {
             foreach (var track in _currentAlbum.tracks)
             {
-                if(id == track.id) return track.audioReference;
+                if (id == track.id) return track.audioReference;
             }
 
             Debug.Log("Track not found");
