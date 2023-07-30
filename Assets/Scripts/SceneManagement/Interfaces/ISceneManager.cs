@@ -12,4 +12,5 @@ public interface ISceneManager
     public event Action<GameSceneSO, bool> onSceneRequest;
     public event Action broadcastSceneLoaded;
     public event Action onRequestLevelAlbum;
+    public event Action onUiLoaded;
 }

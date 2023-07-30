@@ -32,6 +32,7 @@ namespace Bugbear.Managers
         public event Action<string> onRequestCurtain;
         public event Action broadcastSceneLoaded;
         public event Action onRequestLevelAlbum;
+        public event Action onUiLoaded;
         public void SceneRequest(GameSceneSO scene, bool isMenu) => onSceneRequest?.Invoke(scene, isMenu);
         public void ColdBootRequest() => onColdStartUp?.Invoke();
         public void RequestMainMenu() => onStartUp?.Invoke();
@@ -299,7 +300,11 @@ namespace Bugbear.Managers
             AsyncOperation asyncUi = SceneManager.LoadSceneAsync(uiScene.sceneReference, LoadSceneMode.Additive);
             yield return new WaitUntil(() => asyncUi.isDone);
 
-            if (asyncUi.isDone) _uiLoaded = true;
+            if (asyncUi.isDone)
+            {
+                _uiLoaded = true;
+                onUiLoaded?.Invoke();
+            }
         }
         private IEnumerator UnloadCurtainScene()
         {

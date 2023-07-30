@@ -10,5 +10,6 @@ namespace Bugbear.Managers
         public static IRouter _router;
         public static IGameStateManager _gameStateManager;
         public static ICombatManger _combatManager;
+        public static IUiManager _uiManager;
     }
 }

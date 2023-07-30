@@ -24,6 +24,9 @@ namespace Bugbear.Managers
 
             GlobalPointer._combatManager = GetComponent<ICombatManger>();
             yield return ((IGlobalRouter)GlobalPointer._combatManager).InitializeComponent();
+
+            GlobalPointer._uiManager = GetComponent<IUiManager>();
+            yield return ((IGlobalRouter)GlobalPointer._uiManager).InitializeComponent();
         }
 
         public void OnStartUp()

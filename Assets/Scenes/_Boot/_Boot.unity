@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 925847966}
   - component: {fileID: 925847968}
   - component: {fileID: 925847967}
+  - component: {fileID: 925847969}
   m_Layer: 0
   m_Name: Router
   m_TagString: Untagged
@@ -295,5 +296,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f57468f80c360154bb5f22579f1c3cb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &925847969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925847960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29edd3dbfa9dcd74dbf211f57e1287c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
