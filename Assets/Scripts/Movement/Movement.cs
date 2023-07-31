@@ -33,6 +33,7 @@ namespace Bugbear.CharacterMovement
         private int isMovingHash = Animator.StringToHash("isMoving");
         private int isJumpingHash = Animator.StringToHash("isJumping");
         private int isFallingHash = Animator.StringToHash("isFalling");
+        private int isGroundedHash = Animator.StringToHash("isGrounded");
         private bool isJumpAnimating = false;
         private float lastDirection;
 
@@ -105,17 +106,19 @@ namespace Bugbear.CharacterMovement
 
             if (_characterController.isGrounded)
             {
+                _animator.SetBool(isGroundedHash, true);
                 _animator.SetBool(isFallingHash, false);
                 if (isJumpAnimating)
                 {
-                    _animator.SetBool("isJumping", false);
+                    _animator.SetBool(isJumpingHash, false);
                     isJumpAnimating = false;
                 }
                 _currentMovement.y = _gravity;
             }
             else if (isFalling)
             {
-                _animator.SetBool("isFalling", true);
+                _animator.SetBool(isGroundedHash, false);
+                _animator.SetBool(isFallingHash, true);
                 float previousYvelocity = _currentMovement.y;
                 float newYvelocity = _currentMovement.y + (_gravity * falllMultiplier * Time.deltaTime);
                 float nextYvelocity = (previousYvelocity + newYvelocity) * 0.5f;
@@ -140,7 +143,8 @@ namespace Bugbear.CharacterMovement
         {
             if (!isJumping && _characterController.isGrounded && isJumpPressed)
             {
-                _animator.SetBool("isJumping", true);
+                _animator.SetBool(isGroundedHash, false);
+                _animator.SetBool(isJumpingHash, true);
                 isJumpAnimating = true;
                 isJumping = true;
                 _currentMovement.y = _jumpForce * 0.7f;
@@ -149,7 +153,8 @@ namespace Bugbear.CharacterMovement
             else if (!isJumpPressed && isJumping && _characterController.isGrounded)
             {
                 isJumping = false;
-                _animator.SetBool("isFalling", false);
+                _animator.SetBool(isGroundedHash, true);
+                _animator.SetBool(isFallingHash, false);
             }
         }
         private void HandleLookDirection()
