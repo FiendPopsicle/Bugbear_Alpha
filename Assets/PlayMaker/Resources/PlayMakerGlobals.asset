@@ -20,31 +20,31 @@ MonoBehaviour:
       showInInspector: 0
       networkSync: 0
       value: 0
+    - useVariable: 1
+      name: verticalAxis
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
     intVariables: []
     boolVariables:
     - useVariable: 1
-      name: isJumping
+      name: jumpPressed
       tooltip: 
       showInInspector: 0
       networkSync: 0
       value: 0
     - useVariable: 1
-      name: isRunning
+      name: isGrounded
       tooltip: 
       showInInspector: 0
       networkSync: 0
       value: 0
-    stringVariables:
-    - useVariable: 1
-      name: JumpButton
-      tooltip: 
-      showInInspector: 0
-      networkSync: 0
-      value: Jump
+    stringVariables: []
     vector2Variables: []
     vector3Variables:
     - useVariable: 1
-      name: direction
+      name: PlayerVelocity
       tooltip: 
       showInInspector: 0
       networkSync: 0
@@ -60,5 +60,7 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 00000000000000000000000000000000000000000000000000000000
-  events: []
+    variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  events:
+  - isIdle
+  - isGrounded
