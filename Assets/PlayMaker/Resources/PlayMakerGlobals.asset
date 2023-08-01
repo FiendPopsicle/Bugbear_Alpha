@@ -26,7 +26,19 @@ MonoBehaviour:
       showInInspector: 0
       networkSync: 0
       value: 0
-    intVariables: []
+    - useVariable: 1
+      name: AttackGCD
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
+    intVariables:
+    - useVariable: 1
+      name: BasicAttackCount
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
     boolVariables:
     - useVariable: 1
       name: jumpPressed
@@ -36,6 +48,12 @@ MonoBehaviour:
       value: 0
     - useVariable: 1
       name: isGrounded
+      tooltip: 
+      showInInspector: 0
+      networkSync: 0
+      value: 0
+    - useVariable: 1
+      name: isAttacking
       tooltip: 
       showInInspector: 0
       networkSync: 0
@@ -60,7 +78,7 @@ MonoBehaviour:
     enumVariables: []
     categories:
     - 
-    variableCategoryIDs: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    variableCategoryIDs: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   events:
   - isIdle
   - isGrounded
